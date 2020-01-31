@@ -1,10 +1,11 @@
 class IdsController < ApplicationController
-  respond_to :json
-
   def create
-    id = Id.new(id_params)
+    if Id.locked?(params[:value]) || Id.exists?(id_params)
+      id = GenerateAndStoreIdService.call
+      render(json: { data: id }, status: :ok) and return
+    end
 
-    if id.save
+    if (id = Id.new(id_params)).save
       render json: { data: 'OK' }, status: :ok
     else
       render json: { errors: id.errors.full_messages }, status: :unprocessable_entity
