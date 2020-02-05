@@ -41,4 +41,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'redis', '~> 3.3'
+gem 'activerecord-import', :git => 'https://github.com/zdennis/activerecord-import', :ref => 'v1.0.4'

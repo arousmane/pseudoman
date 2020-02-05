@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_161801) do
+ActiveRecord::Schema.define(version: 2020_02_05_125710) do
+
+  create_table "fresh_ids", force: :cascade do |t|
+    t.string "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["value"], name: "index_fresh_ids_on_value", unique: true
+  end
 
   create_table "ids", force: :cascade do |t|
     t.string "value", null: false

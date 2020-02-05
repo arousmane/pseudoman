@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+fresh_ids = ('A'..'Z').to_a.permutation(3).map { |id| FreshId.new(value: id.join)  }
+
+FreshId.import(fresh_ids)

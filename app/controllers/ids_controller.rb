@@ -1,7 +1,7 @@
 class IdsController < ApplicationController
   def create
-    if Id.locked?(params[:value]) || Id.exists?(id_params)
-      id = GenerateAndStoreIdService.call
+    if Id.exists?(id_params)
+      id = AddNewIdService.call
       render(json: { data: id }, status: :ok) and return
     end
 

@@ -1,0 +1,2 @@
+class FreshId < ApplicationRecord
+end

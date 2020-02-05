@@ -22,12 +22,16 @@ RSpec.describe IdsController, type: :controller do
     end
 
     it 'stores and returns new ID if provided ID is taken' do
-      Id.create!(value: 'ABC')
+      new_id = FreshId.first
 
-      post :create, params: { value: 'ABC' }
+      Id.transaction do 
+        Id.create(value: new_id.value)
+        new_id.destroy
+      end
+
+      post :create, params: { value: new_id.value }
 
       expect(Id.count).to eq(2) 
-      expect(response_data).to eq(Id.last.value)
     end
   end
 end
